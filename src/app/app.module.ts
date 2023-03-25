@@ -12,6 +12,8 @@ import { RegistComponent } from './pages/regist/regist.component';
 import { UsersComponent } from './pages/users/users.component';
 import { DecksComponent } from './pages/decks/decks.component';
 import { GamesComponent } from './pages/games/games.component';
+import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { GamesComponent } from './pages/games/games.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
