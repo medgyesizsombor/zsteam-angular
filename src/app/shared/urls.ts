@@ -4,7 +4,7 @@ export const urls = {
     PRODUCT: 'termek',
     USERS: 'felhasznalok',
     USER: 'felhasznalo',
-    LOGIN: 'belepes',
+    LOGIN: 'bejelentkezes',
     REGIST: 'regisztracio',
     NOT_FOUND: '404',
     GAMES: 'jatekok',

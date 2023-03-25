@@ -7,6 +7,7 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { ProductsComponent } from './pages/products/products.component';
 import { RegistComponent } from './pages/regist/regist.component';
 import { UsersComponent } from './pages/users/users.component';
+import { AuthGuard } from './shared/guards/auth.guard';
 import { urls } from './shared/urls';
 
 const routes: Routes = [
@@ -37,7 +38,8 @@ const routes: Routes = [
   },
   {
     path: urls.USERS,
-    component: UsersComponent
+    component: UsersComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: urls.LOGIN,
