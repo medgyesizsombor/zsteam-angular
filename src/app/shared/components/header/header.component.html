@@ -18,7 +18,7 @@
         <li class="nav-item">
           <a class="nav-link header-text-color" [routerLink]="['/' + urls.USERS]">Felhasználók</a>
         </li>
-        <li class="nav-item" *ngIf="currentUser">
+        <li class="nav-item" *ngIf="loggedIn()">
           <a class="nav-link header-text-color" (click)="logout()">Kijelentkezés</a>
         </li>
       </ul>

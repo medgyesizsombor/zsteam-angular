@@ -77,6 +77,7 @@ export class ProductComponent implements OnInit, OnDestroy {
     this.deleteSub?.unsubscribe();
     this.editSub?.unsubscribe();
     this.createSub?.unsubscribe();
+    this.product = undefined;
   }
 
   onSave() {

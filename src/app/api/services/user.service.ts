@@ -36,9 +36,9 @@ export class UserService {
    * @returns
    */
   getUserById(userId: string): Observable<Array<User>> {
-    return this.httpClient.get(`${this.url}/getUserById?id=${userId}`, { responseType: 'text' }).pipe(
+    return this.httpClient.get(`${this.url}/getUserById?id=${userId}`).pipe(
       map(res => {
-        const result = JSON.parse(res) as Result;
+        const result = res as Result;
         if (result.message) {
           return [];
         }
@@ -54,9 +54,9 @@ export class UserService {
    * @returns
    */
   getUserByUsername(username: string): Observable<Array<User>> {
-    return this.httpClient.get(`${this.url}/getUserByUsername?username=${username}`, { responseType: 'text' }).pipe(
+    return this.httpClient.get(`${this.url}/getUserByUsername?username=${username}`).pipe(
       map(res => {
-        const result = JSON.parse(res) as Result;
+        const result = res as Result;
         if (result.message) {
           return [];
         }
