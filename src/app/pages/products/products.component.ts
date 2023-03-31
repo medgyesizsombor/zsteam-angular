@@ -73,7 +73,6 @@ export class ProductsComponent implements OnInit, OnDestroy {
     const right = localStorage.getItem('right');
     if (right) {
       this.right = JSON.parse(right);
-      console.log(this.right)
     }
   }
 }

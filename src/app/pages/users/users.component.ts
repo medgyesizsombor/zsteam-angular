@@ -86,7 +86,6 @@ export class UsersComponent implements OnInit, OnDestroy {
             this.router.navigate(['/' + urls.LOGIN]);
           },
           error: err => {
-            console.log(err)
             this.toastrService.error('Hiba törlés közben!');
           }
         });

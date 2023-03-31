@@ -34,9 +34,9 @@ export class ProductService {
    * @param id Termék Id
    */
   getProductById(productId: string): Observable<Array<Product>> {
-    return this.httpClient.get(`${this.url}/getAllProducts?id=${productId}`, { responseType: 'text' }).pipe(
+    return this.httpClient.get(`${this.url}/getProductById?id=${productId}`).pipe(
       map(res => {
-        const result = JSON.parse(res) as Result;
+        const result = res as Result;
         if (result.message) {
           return [];
         }
@@ -68,9 +68,9 @@ export class ProductService {
    * @returns Összes deck
    */
   getAllDecks(): Observable<Array<Product>> {
-    return this.httpClient.get(`${this.url}/getAllDecks`, { responseType: 'text' }).pipe(
+    return this.httpClient.get(`${this.url}/getAllDecks`).pipe(
       map(res => {
-        const result = JSON.parse(res) as Result;
+        const result = res as Result;
         if (result.message) {
           return [];
         }
