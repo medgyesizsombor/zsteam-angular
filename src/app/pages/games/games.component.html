@@ -1,10 +1,47 @@
 <div class="container">
-    <p>asdasd</p>
-    <p>asdasd</p>
-    <p>asdasd</p>
-    <p>asdasd</p>
-    <p>asdasd</p>
-    <p>asdasd</p>
-
-    <p>asdasd</p>
+  <h1 class="text-center mt-3">Játékok</h1>
+  <ng-container *ngIf="!loading; else loader">
+    <div *ngIf="right === rightEnum.ADMIN" class="row m-3 justify-content-around">
+      <div class="col-4">
+        <button class="btn btn-lg btn-outline-info w-100" [routerLink]="['/' + urls.PRODUCT]">Termék hozzáadása</button>
+      </div>
+    </div>
+    <div *ngIf="games.length > 0; else missingGames" class="row m-3 justify-content-around">
+      <div class="m-3 card p-0" *ngFor="let game of games">
+        <img class="w-100" src="../../../assets/image/image.png" />
+        <div class="card-body">
+          <h2 class="card-title">{{ game.name }}</h2>
+          <p class="card-text mb-3">
+            {{ game.price }}
+          </p>
+          <p class="card-text">Játék</p>
+          <div class="row justify-content-center mb-3">
+            <div class="col-6">
+              <a [routerLink]="['/' + urls.PRODUCT_DETAIL]" [queryParams]="{ id: game.id }" class="btn btn-primary w-100">
+                Több...
+              </a>
+            </div>
+          </div>
+          <div class="row justify-content-between" *ngIf="right === rightEnum.ADMIN">
+            <div class="col-6">
+              <a [routerLink]="['/' + urls.PRODUCT]" [queryParams]="{ id: game.id }" class="btn btn-outline-primary w-100">
+                Szerkesztés
+              </a>
+            </div>
+            <div class="col-6">
+              <a (click)="onDelete(game.id)" class="btn btn-outline-danger w-100">Törlés</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
 </div>
+
+<ng-template #missingGames>
+  <h1 class="text-center mt-3">Nincs jelenleg játék feltöltve</h1>
+</ng-template>
+
+<ng-template #loader>
+  <app-loader></app-loader>
+</ng-template>

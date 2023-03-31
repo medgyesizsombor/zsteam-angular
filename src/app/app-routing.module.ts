@@ -8,7 +8,12 @@ import { ProductsComponent } from './pages/products/products.component';
 import { RegistComponent } from './pages/regist/regist.component';
 import { UsersComponent } from './pages/users/users.component';
 import { AuthGuard } from './shared/guards/auth.guard';
+import { LoginGuard } from './shared/guards/login.guard';
 import { urls } from './shared/urls';
+import { ProductComponent } from './pages/product/product.component';
+import { UserComponent } from './pages/user/user.component';
+import { UserDetailComponent } from './pages/user-detail/user-detail.component';
+import { ProductDetailComponent } from './pages/product-detail/product-detail.component';
 
 const routes: Routes = [
   {
@@ -18,23 +23,28 @@ const routes: Routes = [
   },
   {
     path: urls.PRODUCTS,
-    component: ProductsComponent
+    component: ProductsComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: urls.PRODUCT,
+    component: ProductComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: urls.NOT_FOUND,
-    component: NotFoundComponent
-  },
-  {
-    path: urls.PRODUCTS,
-    component: ProductsComponent
+    component: NotFoundComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: urls.GAMES,
-    component: GamesComponent
+    component: GamesComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: urls.DECKS,
-    component: DecksComponent
+    component: DecksComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: urls.USERS,
@@ -42,12 +52,29 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
+    path: urls.USER,
+    component: UserComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: urls.USER_DETAIL,
+    component: UserDetailComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: urls.PRODUCT_DETAIL,
+    component: ProductDetailComponent,
+    canActivate: [AuthGuard]
+  },
+  {
     path: urls.LOGIN,
-    component: LoginComponent
+    component: LoginComponent,
+    canActivate: [LoginGuard]
   },
   {
     path: urls.REGIST,
-    component: RegistComponent
+    component: RegistComponent,
+    canActivate: [LoginGuard]
   },
   {
     path: '**',

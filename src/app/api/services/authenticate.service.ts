@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { Result } from '../models/result.model';
 
 @Injectable({
   providedIn: 'root'
@@ -17,20 +18,35 @@ export class AuthenticateService {
    * @param password Jelszó
    */
   login(username: string, password: string): Observable<Object> {
-    return this.httpClient.post(
-      `${this.url}/authenticate/login`,
-      {
-        username,
-        password
-      },
-      { responseType: 'text' }
-    );
+    return this.httpClient
+      .post(
+        `${this.url}/login`,
+        {
+          username,
+          password
+        },
+        { responseType: 'text' }
+      )
+      .pipe(
+        map(res => {
+          const result = JSON.parse(res) as Result;
+          if (result.message) {
+            return false;
+          }
+
+          return true;
+        })
+      );
   }
 
   /**
    * Kijelentkezés
    */
   logout() {
-    return this.httpClient.post(`${this.url}/authenticate/logout`, {}, { withCredentials: true });
+    return this.httpClient.post(`${this.url}/logout`, {}, { withCredentials: true });
+  }
+
+  status() {
+    return this.httpClient.get(`${this.url}/status`);
   }
 }

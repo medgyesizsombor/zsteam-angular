@@ -1,12 +1,31 @@
-<div class="container">
-    <h1>Bejelentkezés</h1>
-    
-    <div>
-        <label>Felhasználónév</label>
-        <input type="text" id="username" [(ngModel)]="username">
+<div class="container mt-3">
+  <form id="loginForm" [formGroup]="loginForm" class="g-3">
+    <div class="row pt-3 justify-content-around">
+      <div class="col-md-6">
+        <label for="username" class="form-label">Felhasználónév</label>
+        <input type="text" formControlName="username" class="form-control" id="username" />
+      </div>
     </div>
-    <div>
-        <label>Jelszó</label>
-        <input type="password" id="password" [(ngModel)]="password">
+    <div class="row pt-3 justify-content-around">
+      <div class="col-md-6">
+        <label for="password" class="form-label">Jelszó</label>
+        <input type="password" formControlName="password" class="form-control" id="password" />
+      </div>
     </div>
+    <div class="row pt-3 justify-content-around">
+      <div class="col-md-2">
+        <button type="submit" (click)="login()" class="btn btn-primary w-100">Bejelentkezés</button>
+      </div>
+    </div>
+    <div class="row pt-3 justify-content-around">
+      <div class="col-auto">
+        <p>Ha még nincs fiókod, regisztrálj!</p>
+      </div>
+    </div>
+    <div class="row pt-2 justify-content-around">
+      <div class="col-md-2">
+        <button type="submit" [routerLink]="['/' + urls.REGIST]" class="btn btn-primary w-100">Regisztráció</button>
+      </div>
+    </div>
+  </form>
 </div>

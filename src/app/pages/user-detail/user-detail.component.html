@@ -1,0 +1,45 @@
+<div class="container">
+  <h1 class="text-center mt-3">Felhasználó</h1>
+  <ng-container *ngIf="!isLoading; else loader">
+    <div *ngIf="user; else missingUser" class="row justify-content-center m-3 justify-content-around">
+      <div class="row justify-content-center">
+        <div class="col-auto">
+          <h3>Felhasználónév: {{ user.username }}</h3>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-auto">
+          <h3>Név: {{ user.lastName }} {{ user.firstName }}</h3>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-auto">
+          <h3>E-mail: {{ user.email }}</h3>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-auto">
+          <h3>Jogkör: {{ user.right === rightEnum.ADMIN ? 'Admin' : 'Felhasználó' }}</h3>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-auto">
+          <h3>Irányítószám: {{ user.postalCode }}</h3>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-auto">
+          <h3>Lakcím: {{ user.address }}</h3>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</div>
+
+<ng-template #missingUser>
+  <h1 class="text-center mt-3">Nem található a felhasználó</h1>
+</ng-template>
+
+<ng-template #loader>
+  <app-loader></app-loader>
+</ng-template>

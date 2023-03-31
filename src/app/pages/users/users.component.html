@@ -1,1 +1,44 @@
-<p>users works!</p>
+<div class="container">
+  <h1 class="text-center mt-3">Felhasználók</h1>
+  <ng-container *ngIf="!loading; else loader">
+    <div *ngIf="right === rightEnum.ADMIN" class="row m-3 justify-content-around">
+      <div class="col-4">
+        <button class="btn btn-lg btn-outline-info w-100" [routerLink]="['/' + urls.USER]">Felhasználó hozzáadása</button>
+      </div>
+    </div>
+    <div *ngIf="users.length > 0; else missingUsers" class="row m-3 justify-content-around">
+      <div class="m-3 card p-0" *ngFor="let user of users">
+        <div class="card-body">
+          <h2 class="card-title">{{ user.username }}</h2>
+          <p class="card-text mb-3">{{ user.firstName }} {{ user.lastName }}</p>
+          <p class="card-text mb-3">{{ user.right === rightEnum.ADMIN ? 'Admin' : 'Felhasználó' }}</p>
+          <div class="row justify-content-center mb-3">
+            <div class="col-6">
+              <a [routerLink]="['/' + urls.USER_DETAIL]" [queryParams]="{ id: user.id }" class="btn btn-primary w-100">
+                Több...
+              </a>
+            </div>
+          </div>
+          <div class="row justify-content-center">
+            <div *ngIf="right === rightEnum.ADMIN || user.username === username" class="col-6">
+              <a [routerLink]="['/' + urls.USER]" [queryParams]="{ id: user.id }" class="btn btn-outline-primary w-100">
+                Szerkesztés
+              </a>
+            </div>
+            <div class="col-6">
+              <a (click)="onDelete(user.id, user.username)" class="btn btn-outline-danger w-100"> Törlés </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</div>
+
+<ng-template #missingUsers>
+  <h1 class="text-center mt-3">Nincs jelenleg felhasználó feltöltve</h1>
+</ng-template>
+
+<ng-template #loader>
+  <app-loader></app-loader>
+</ng-template>

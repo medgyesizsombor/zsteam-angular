@@ -1,1 +1,47 @@
+<div class="container mt-3">
+  <h1 class="text-center">Termékek</h1>
+  <ng-container *ngIf="!loading; else loader">
+    <div *ngIf="right === rightEnum.ADMIN" class="row m-3 justify-content-around">
+      <div class="col-4">
+        <button class="btn btn-lg btn-outline-info w-100" [routerLink]="['/' + urls.PRODUCT]">Termék hozzáadása</button>
+      </div>
+    </div>
+    <div *ngIf="products.length > 0; else missingProducts" class="row m-3 justify-content-around">
+      <div class="m-3 card p-0" *ngFor="let product of products">
+        <img class="w-100" src="../../../assets/image/image.png" />
+        <div class="card-body">
+          <h2 class="card-title mb-3">{{ product.name }}</h2>
+          <p class="card-text mb-3">
+            {{ product.price }}
+          </p>
+          <p class="card-text mb-3">{{ product.category === categoryEnum.DECK ? 'Deck' : 'Játék' }}</p>
+          <div class="row justify-content-center mb-3">
+            <div class="col-6">
+              <a [routerLink]="['/' + urls.PRODUCT_DETAIL]" [queryParams]="{ id: product.id }" class="btn btn-primary w-100">
+                Több...
+              </a>
+            </div>
+          </div>
+          <div class="row justify-content-between" *ngIf="right === rightEnum.ADMIN">
+            <div class="col-6">
+              <a [routerLink]="['/' + urls.PRODUCT]" [queryParams]="{ id: product.id }" class="btn btn-outline-primary w-100">
+                Szerkesztés
+              </a>
+            </div>
+            <div class="col-6">
+              <a (click)="onDelete(product.id)" class="btn btn-outline-danger w-100"> Törlés </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</div>
 
+<ng-template #missingProducts>
+  <h1 class="text-center mt-3">Nincs jelenleg termék feltöltve</h1>
+</ng-template>
+
+<ng-template #loader>
+  <app-loader></app-loader>
+</ng-template>
