@@ -1,5 +1,4 @@
 export const urls = {
-    HOME: 'fooldal',
     PRODUCTS: 'termekek',
     PRODUCT: 'termek',
     USERS: 'felhasznalok',
@@ -10,5 +9,7 @@ export const urls = {
     GAMES: 'jatekok',
     GAME: 'jatek',
     DECKS: 'decks',
-    DECK: 'deck'
+    DECK: 'deck',
+    USER_DETAIL: 'felhasznalo-adatok',
+    PRODUCT_DETAIL: 'termek-adatok',
   };

@@ -1,0 +1,49 @@
+<div class="container mt-3">
+  <h1 class="text-center mt-3">{{ title }}</h1>
+  <form id="productForm" [formGroup]="productForm" class="g-3">
+    <div class="row pt-3">
+      <div class="col-md-6">
+        <label for="name" class="form-label">Név</label>
+        <input type="text" formControlName="name" class="form-control" id="name" />
+      </div>
+      <div class="col-md-6">
+        <label for="price" class="form-label">Ár</label>
+        <input type="text" formControlName="price" class="form-control" id="price" />
+      </div>
+    </div>
+    <div class="row pt-3">
+      <div class="col-md-6">
+        <select class="form-select" formControlName="category">
+          <option *ngFor="let category of categoryArray" [ngValue]="category">
+            {{ category == categoryEnum.DECK ? 'Deck' : 'Játék' }}
+          </option>
+        </select>
+      </div>
+      <div class="col-md-6">
+        <select class="form-select col-md-6" formControlName="storage">
+          <option *ngFor="let storage of storageArray" [ngValue]="storage" [selected]="storage === storageEnum.BIG">
+            {{ storage !== storageEnum.NULL ? storage : '-' }}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <div class="row pt-3 justify-content-around">
+      <div class="col-md-2" *ngIf="product">
+        <button
+          type="submit"
+          [disabled]="productForm.invalid"
+          (click)="onDelete()"
+          class="btn btn-outline-danger w-100"
+        >
+          Törlés
+        </button>
+      </div>
+      <div class="col-md-2">
+        <button type="submit" [disabled]="productForm.invalid" (click)="onSave()" class="btn btn-primary w-100">
+          Mentés
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,67 @@
+<div class="container mt-3">
+  <h1 class="text-center mt-3">{{ title }}</h1>
+  <form id="userForm" [formGroup]="userForm" class="g-3">
+    <div class="row pt-3">
+      <div class="col-md-6">
+        <label for="username" class="form-label">Felhasznalónév</label>
+        <input type="text" formControlName="username" class="form-control" id="username" />
+      </div>
+      <div class="col-md-6">
+        <label for="email" class="form-label">Email</label>
+        <input type="text" formControlName="email" class="form-control" id="email" />
+      </div>
+    </div>
+    <div class="row pt-3">
+      <div class="col-md-6">
+        <label for="lastName" class="form-label">Vezetéknév</label>
+        <input type="text" formControlName="lastName" class="form-control" id="lastName" />
+      </div>
+      <div class="col-md-6">
+        <label for="firstName" class="form-label">Keresztnév</label>
+        <input type="text" formControlName="firstName" class="form-control" id="firstName" />
+      </div>
+    </div>
+    <div class="row pt-3">
+      <div class="col-md">
+        <label for="right" class="form-label">Jogkör</label>
+        <select class="form-select" formControlName="right">
+          <option *ngFor="let right of rightArray" [ngValue]="right" [selected]="right === rightEnum.USER">
+            {{ right == rightEnum.USER ? 'Felhasználó' : 'Admin' }}
+          </option>
+        </select>
+      </div>
+    </div>
+    <div class="row pt-3">
+      <div class="col-md-2">
+        <label for="postalCode" class="form-label">Irányítószám</label>
+        <input type="text" formControlName="postalCode" class="form-control" id="postalCode" />
+      </div>
+      <div class="col-md-10">
+        <label for="address" class="form-label">Lakcím</label>
+        <input type="text" formControlName="address" class="form-control" id="address" />
+      </div>
+    </div>
+    <div class="row pt-3">
+        <div class="col-md-6">
+            <label for="password" class="form-label">Jelszó</label>
+            <input type="password" formControlName="password" class="form-control" id="password" />
+          </div>
+          <div class="col-md-6">
+            <label for="confirmPassword" class="form-label">Jelszó mégegyszer</label>
+            <input type="password" formControlName="confirmPassword" class="form-control" id="confirmPassword" />
+          </div>
+    </div>
+    <div class="row pt-3 justify-content-around">
+      <div class="col-md-2" *ngIf="user">
+        <button type="submit" [disabled]="userForm.invalid" (click)="onDelete()" class="btn btn-outline-danger w-100">
+          Törlés
+        </button>
+      </div>
+      <div class="col-md-2">
+        <button type="submit" [disabled]="userForm.invalid" (click)="onSave()" class="btn btn-primary w-100">
+          Mentés
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

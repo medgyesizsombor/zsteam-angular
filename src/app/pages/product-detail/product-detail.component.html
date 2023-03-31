@@ -1,0 +1,35 @@
+<div class="container">
+  <h1 class="text-center mt-3">Felhasználó</h1>
+  <ng-container *ngIf="!isLoading; else loader">
+    <div *ngIf="product; else missingUser" class="row justify-content-center m-3 justify-content-around">
+      <div class="row justify-content-center">
+        <div class="col-auto">
+          <h3>Név: {{ product.name }}</h3>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-auto">
+          <h3>Ár: {{ product.price }}</h3>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-auto">
+          <h3>Kategória: {{ product.category === categoryEnum.GAME ? 'Játék' : 'Deck' }}</h3>
+        </div>
+      </div>
+      <div *ngIf="product.storage !== storageEnum.NULL" class="row justify-content-center">
+        <div class="col-auto">
+          <h3>Tárhely: {{ product.storage }}</h3>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</div>
+
+<ng-template #missingUser>
+  <h1 class="text-center mt-3">Nem található a felhasználó</h1>
+</ng-template>
+
+<ng-template #loader>
+  <app-loader></app-loader>
+</ng-template>
