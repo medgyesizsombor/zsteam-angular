@@ -18,7 +18,10 @@
         <li class="nav-item">
           <a class="nav-link header-text-color" [routerLink]="['/' + urls.USERS]">Felhasználók</a>
         </li>
-        <li class="nav-item" *ngIf="loggedIn()">
+        <li class="nav-item" *ngIf="isAdmin()">
+          <a class="nav-link header-text-color" [routerLink]="['/' + urls.ADMIN]">Admin oldal</a>
+        </li>
+        <li class="nav-item" *ngIf="isLoggedIn()">
           <a class="nav-link header-text-color" (click)="logout()">Kijelentkezés</a>
         </li>
       </ul>

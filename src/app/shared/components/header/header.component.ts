@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ToastrService } from 'ngx-toastr';
 import { User } from 'src/app/api/models/user.model';
-import { AuthenticateService } from 'src/app/api/services/authenticate.service';
 import { urls } from '../../urls';
 import { Router } from '@angular/router';
+import { Right } from 'src/app/api/enums/right.enum';
+import { AuthenticateService } from 'src/app/api/services/authenticate.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-header',
@@ -18,29 +19,39 @@ export class HeaderComponent implements OnInit {
 
   currentUser: User | null = null;
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private authenticateService: AuthenticateService,
+    private toastrService: ToastrService
+  ) {}
 
   ngOnInit(): void {}
 
-  loggedIn() {
+  isLoggedIn(): boolean {
     const username = localStorage.getItem('isAuthenticated');
     return username ? JSON.parse(username) : null;
   }
 
+  isAdmin(): boolean {
+    const right = localStorage.getItem('right');
+    if (right && JSON.parse(right) === Right.ADMIN) {
+      return true;
+    }
+
+    return false;
+  }
+
   logout(): void {
-    localStorage.removeItem('isAuthenticated');
-    localStorage.removeItem('right');
-    this.router.navigate(['/' + urls.LOGIN]);
-    /* this.authenticateService.logout().subscribe({
+    this.authenticateService.logout().subscribe({
       next: res => {
         this.toastrService.success('Sikeres kijelentkezés');
         localStorage.removeItem('isAuthenticated');
         localStorage.removeItem('right');
+        this.router.navigate(['/' + urls.LOGIN]);
       },
       error: err => {
-        localStorage.removeItem('isAuthenticated');
         this.toastrService.error('Sikertelen kijelentkezés');
       }
-    }); */
+    });
   }
 }
