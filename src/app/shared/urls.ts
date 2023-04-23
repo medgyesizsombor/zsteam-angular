@@ -12,4 +12,5 @@ export const urls = {
     DECK: 'deck',
     USER_DETAIL: 'felhasznalo-adatok',
     PRODUCT_DETAIL: 'termek-adatok',
+    ADMIN: 'admin'
   };

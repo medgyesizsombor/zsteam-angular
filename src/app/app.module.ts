@@ -20,6 +20,7 @@ import { ProductComponent } from './pages/product/product.component';
 import { UserComponent } from './pages/user/user.component';
 import { UserDetailComponent } from './pages/user-detail/user-detail.component';
 import { ProductDetailComponent } from './pages/product-detail/product-detail.component';
+import { AdminComponent } from './pages/admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { ProductDetailComponent } from './pages/product-detail/product-detail.co
     ProductComponent,
     UserComponent,
     UserDetailComponent,
-    ProductDetailComponent
+    ProductDetailComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,
