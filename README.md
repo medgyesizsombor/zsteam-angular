@@ -1,4 +1,4 @@
-# BeadandoAngular
+# ZSteam-angular
 
 PRF Beadandó Frontend része.
 
