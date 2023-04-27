@@ -9,7 +9,7 @@
       </div>
       <div class="row justify-content-center">
         <div class="col-auto">
-          <h3>Ár: {{ product.price }}</h3>
+          <h3>Ár: {{ product.price }} Ft</h3>
         </div>
       </div>
       <div class="row justify-content-center">
@@ -21,6 +21,11 @@
         <div class="col-auto">
           <h3>Tárhely: {{ product.storage }}</h3>
         </div>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-3">
+        <a [routerLink]="['/' + urls.PRODUCTS]" class="btn btn-primary w-100"> Vissza </a>
       </div>
     </div>
   </ng-container>

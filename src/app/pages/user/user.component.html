@@ -41,7 +41,7 @@
         <input type="text" formControlName="address" class="form-control" id="address" />
       </div>
     </div>
-    <div class="row pt-3">
+    <div class="row pt-3" *ngIf="!isEdit">
         <div class="col-md-6">
             <label for="password" class="form-label">Jelszó</label>
             <input type="password" formControlName="password" class="form-control" id="password" />

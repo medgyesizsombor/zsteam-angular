@@ -12,12 +12,11 @@
         <div class="card-body">
           <h2 class="card-title">{{ deck.name }}</h2>
           <p class="card-text mb-3">
-            {{ deck.price }}
+            Ár: {{ deck.price }} Ft
           </p>
           <p class="card-text mb-3">
-            {{ deck.storage }}
+            Tárhely: {{ deck.storage }}
           </p>
-          <p class="card-text">Deck</p>
           <div class="row justify-content-center mb-3">
             <div class="col-6">
               <a [routerLink]="['/' + urls.PRODUCT_DETAIL]" [queryParams]="{ id: deck.id }" class="btn btn-primary w-100">

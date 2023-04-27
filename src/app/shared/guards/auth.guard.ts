@@ -7,7 +7,6 @@ import { urls } from '../urls';
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
-  private readonly urls = urls;
   constructor(private router: Router) {}
   canActivate(
     route: ActivatedRouteSnapshot,

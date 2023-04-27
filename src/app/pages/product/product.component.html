@@ -13,6 +13,7 @@
     </div>
     <div class="row pt-3">
       <div class="col-md-6">
+        <label for="name" class="form-label">Kategória</label>
         <select class="form-select" formControlName="category">
           <option *ngFor="let category of categoryArray" [ngValue]="category">
             {{ category == categoryEnum.DECK ? 'Deck' : 'Játék' }}
@@ -20,8 +21,9 @@
         </select>
       </div>
       <div class="col-md-6">
+        <label for="name" class="form-label">Tárhely</label>
         <select class="form-select col-md-6" formControlName="storage">
-          <option *ngFor="let storage of storageArray" [ngValue]="storage" [selected]="storage === storageEnum.BIG">
+          <option *ngFor="let storage of storageArray" [ngValue]="storage" [selected]="storage === storageEnum.NULL">
             {{ storage !== storageEnum.NULL ? storage : '-' }}
           </option>
         </select>

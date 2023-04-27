@@ -3,7 +3,6 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { User } from 'src/app/api/models/user.model';
-import { Result } from 'src/app/api/models/result.model';
 import { UserService } from 'src/app/api/services/user.service';
 import { urls } from 'src/app/shared/urls';
 import { v4 as uuidv4 } from 'uuid';
@@ -53,7 +52,6 @@ export class UserComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.createUserForm();
     this.isLoading = true;
     this.urlSub = this.activatedRoute.queryParamMap.subscribe(queryParams => {
       if (queryParams?.get('id')) {
@@ -119,17 +117,29 @@ export class UserComponent implements OnInit, OnDestroy {
   }
 
   private createUserForm() {
-    this.userForm = new FormGroup({
-      username: new FormControl({ value: null, disabled: false }, [Validators.required]),
-      firstName: new FormControl({ value: null, disabled: false }, [Validators.required]),
-      lastName: new FormControl({ value: null, disabled: false }, [Validators.required]),
-      email: new FormControl({ value: null, disabled: false }, [Validators.required]),
-      right: new FormControl({ value: null, disabled: false }, [Validators.required]),
-      postalCode: new FormControl({ value: null, disabled: false }, [Validators.required]),
-      address: new FormControl({ value: null, disabled: false }, [Validators.required]),
-      password: new FormControl({ value: null, disabled: false }, [Validators.required]),
-      confirmPassword: new FormControl({ value: null, disabled: false })
-    });
+    if (this.isEdit) {
+      this.userForm = new FormGroup({
+        username: new FormControl({ value: null, disabled: false }, [Validators.required]),
+        firstName: new FormControl({ value: null, disabled: false }, [Validators.required]),
+        lastName: new FormControl({ value: null, disabled: false }, [Validators.required]),
+        email: new FormControl({ value: null, disabled: false }, [Validators.required]),
+        right: new FormControl({ value: null, disabled: false }, [Validators.required]),
+        postalCode: new FormControl({ value: null, disabled: false }, [Validators.required]),
+        address: new FormControl({ value: null, disabled: false }, [Validators.required])
+      });
+    } else {
+      this.userForm = new FormGroup({
+        username: new FormControl({ value: null, disabled: false }, [Validators.required]),
+        firstName: new FormControl({ value: null, disabled: false }, [Validators.required]),
+        lastName: new FormControl({ value: null, disabled: false }, [Validators.required]),
+        email: new FormControl({ value: null, disabled: false }, [Validators.required]),
+        right: new FormControl({ value: null, disabled: false }, [Validators.required]),
+        postalCode: new FormControl({ value: null, disabled: false }, [Validators.required]),
+        address: new FormControl({ value: null, disabled: false }, [Validators.required]),
+        password: new FormControl({ value: null, disabled: false }, [Validators.required]),
+        confirmPassword: new FormControl({ value: null, disabled: false })
+      });
+    }
   }
 
   private editUser(user: User) {
@@ -170,16 +180,30 @@ export class UserComponent implements OnInit, OnDestroy {
   }
 
   private loadData() {
-    this.userForm.patchValue({
-      username: this.user?.username,
-      firstName: this.user?.firstName,
-      lastName: this.user?.lastName,
-      email: this.user?.email,
-      right: this.user?.right ?? this.rightEnum.USER,
-      postalCode: this.user?.postalCode,
-      address: this.user?.address,
-      password: this.user?.password,
-      confirmPassword: this.user?.password
-    });
+    if (this.isEdit) {
+      this.createUserForm();
+      this.userForm.patchValue({
+        username: this.user?.username,
+        firstName: this.user?.firstName,
+        lastName: this.user?.lastName,
+        email: this.user?.email,
+        right: this.user?.right ?? this.rightEnum.USER,
+        postalCode: this.user?.postalCode,
+        address: this.user?.address
+      });
+    } else {
+      this.createUserForm();
+      this.userForm.patchValue({
+        username: this.user?.username,
+        firstName: this.user?.firstName,
+        lastName: this.user?.lastName,
+        email: this.user?.email,
+        right: this.user?.right ?? this.rightEnum.USER,
+        postalCode: this.user?.postalCode,
+        address: this.user?.address,
+        password: this.user?.password,
+        confirmPassword: this.user?.password
+      });
+    }
   }
 }

@@ -6,7 +6,6 @@ import { Subscription } from 'rxjs';
 import { Category } from 'src/app/api/enums/category.enum';
 import { Storage } from 'src/app/api/enums/storage.enum';
 import { Product } from 'src/app/api/models/product.model';
-import { Result } from 'src/app/api/models/result.model';
 import { ProductService } from 'src/app/api/services/product.service';
 import { urls } from 'src/app/shared/urls';
 import { v4 as uuidv4 } from 'uuid';
@@ -162,7 +161,7 @@ export class ProductComponent implements OnInit, OnDestroy {
       name: this.product?.name,
       price: this.product?.price,
       category: this.product?.category ?? this.categoryEnum.GAME,
-      storage: this.product?.storage ?? this.storageEnum.SMALL
+      storage: this.product?.storage ?? this.storageEnum.NULL
     });
   }
 }
