@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
-import { UserService } from 'src/app/api/services/user.service';
 import { Right as RightEnum} from 'src/app/api/enums/right.enum';
 import { urls } from '../urls';
 
@@ -9,7 +8,7 @@ import { urls } from '../urls';
   providedIn: 'root'
 })
 export class AdminGuard implements CanActivate {
-  constructor(private userService: UserService, private router: Router){}
+  constructor(private router: Router){}
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot

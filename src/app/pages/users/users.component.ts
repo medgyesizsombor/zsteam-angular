@@ -4,7 +4,6 @@ import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
 import { Right } from 'src/app/api/enums/right.enum';
 import { User } from 'src/app/api/models/user.model';
-import { AuthenticateService } from 'src/app/api/services/authenticate.service';
 import { UserService } from 'src/app/api/services/user.service';
 import { urls } from 'src/app/shared/urls';
 

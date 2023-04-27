@@ -3,7 +3,6 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { User } from 'src/app/api/models/user.model';
-import { Result } from 'src/app/api/models/result.model';
 import { UserService } from 'src/app/api/services/user.service';
 import { urls } from 'src/app/shared/urls';
 import { v4 as uuidv4 } from 'uuid';
