@@ -12,9 +12,8 @@
         <div class="card-body">
           <h2 class="card-title">{{ game.name }}</h2>
           <p class="card-text mb-3">
-            {{ game.price }}
+            Ár: {{ game.price }} Ft
           </p>
-          <p class="card-text">Játék</p>
           <div class="row justify-content-center mb-3">
             <div class="col-6">
               <a [routerLink]="['/' + urls.PRODUCT_DETAIL]" [queryParams]="{ id: game.id }" class="btn btn-primary w-100">

@@ -162,7 +162,7 @@ export class ProductComponent implements OnInit, OnDestroy {
       name: this.product?.name,
       price: this.product?.price,
       category: this.product?.category ?? this.categoryEnum.GAME,
-      storage: this.product?.storage ?? this.storageEnum.SMALL
+      storage: this.product?.storage ?? this.storageEnum.NULL
     });
   }
 }

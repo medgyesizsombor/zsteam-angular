@@ -8,10 +8,11 @@
     </div>
     <div *ngIf="users.length > 0; else missingUsers" class="row m-3 justify-content-around">
       <div class="m-3 card p-0" *ngFor="let user of users">
+        <img class="w-100" src="../../../assets/image/image.png" />
         <div class="card-body">
           <h2 class="card-title">{{ user.username }}</h2>
-          <p class="card-text mb-3">{{ user.firstName }} {{ user.lastName }}</p>
-          <p class="card-text mb-3">{{ user.right === rightEnum.ADMIN ? 'Admin' : 'Felhasználó' }}</p>
+          <p class="card-text mb-3">Név: {{ user.lastName }} {{ user.firstName }}</p>
+          <p class="card-text mb-3">Jogkör: {{ user.right === rightEnum.ADMIN ? 'Admin' : 'Felhasználó' }}</p>
           <div class="row justify-content-center mb-3">
             <div class="col-6">
               <a [routerLink]="['/' + urls.USER_DETAIL]" [queryParams]="{ id: user.id }" class="btn btn-primary w-100">
@@ -19,8 +20,8 @@
               </a>
             </div>
           </div>
-          <div class="row justify-content-center">
-            <div *ngIf="right === rightEnum.ADMIN || user.username === username" class="col-6">
+          <div *ngIf="right === rightEnum.ADMIN || user.username === username" class="row justify-content-center">
+            <div class="col-6">
               <a [routerLink]="['/' + urls.USER]" [queryParams]="{ id: user.id }" class="btn btn-outline-primary w-100">
                 Szerkesztés
               </a>
