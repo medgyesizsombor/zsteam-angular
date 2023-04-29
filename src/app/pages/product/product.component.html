@@ -33,7 +33,7 @@
     <div class="row pt-3 justify-content-around">
       <div class="col-md-2" *ngIf="product">
         <button
-          type="submit"
+          type="button"
           [disabled]="productForm.invalid"
           (click)="onDelete()"
           class="btn btn-outline-danger w-100"
@@ -42,7 +42,7 @@
         </button>
       </div>
       <div class="col-md-2">
-        <button type="submit" [disabled]="productForm.invalid" (click)="onSave()" class="btn btn-primary w-100">
+        <button type="button" [disabled]="productForm.invalid" (click)="onSave()" class="btn btn-primary w-100">
           Mentés
         </button>
       </div>
